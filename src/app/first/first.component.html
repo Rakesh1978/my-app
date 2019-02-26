@@ -1,0 +1,13 @@
+<p>
+  first works!
+ 
+</p>
+
+<div *ngIf='undefined !== data'>
+  <li *ngFor="let product of data | async" >
+    -- userId: {{product.userId}}
+    -- id: {{product.id}}
+    
+  </li>
+</div>
+  

@@ -1,0 +1,30 @@
+<div style="padding: 5px;">
+  <h1>Angular Material 2 Tab Example using md-tab-nav-bar and md-tab-link.</h1>
+ 
+  <select (change)="onNavigate($event.target.value)"> 
+    <option>--Select Option--</option> 
+    <option *ngFor="let list of listOptions" value={{list.id}}>{{list.name}}</option>
+  </select>
+
+<!--
+<input #accountId>
+<button (click)="getData($event.target.value)"> Submit</button>-->
+<a [routerLink]="['/product1']"> <button (click)="newMessage(accountId.value)"> Submit </button></a>
+
+  <nav mat-tab-nav-bar >
+      <a mat-tab-link 
+         *ngFor="let routeLink of routeLinks; let i = index;"
+         [routerLink]="routeLink.link"
+         routerLinkActive="mat-tab-link-active" #rla="routerLinkActive"        
+      >
+          {{routeLink.label}}
+      </a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
+
+ <!--   [active]="activeLinkIndex === i"
+         (click)="activeLinkIndex = i"
+         [routerLinkActiveOptions]="{exact: true}"
+      -->
