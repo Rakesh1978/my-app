@@ -17,7 +17,7 @@
          [routerLink]="routeLink.link"
          routerLinkActive="mat-tab-link-active" #rla="routerLinkActive"  
          [active]="activeLinkIndex === i"
-         (click)="activeLinkIndex = i"
+         (click)="clickFun()"
          [routerLinkActiveOptions]="{exact: true}"      
       >
           {{routeLink.label}}

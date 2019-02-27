@@ -19,7 +19,9 @@ const httpOptions = {
   })
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HeroService {
   heroesUrl = 'api/heroes';  // URL to web api
   private handleError: HandleError;
