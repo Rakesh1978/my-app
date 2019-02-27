@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router,NavigationEnd} from '@angular/router';
 import {HeroService } from './hero.service';
 import { Util } from './util';
 import {FirstComponent} from './first/first.component';
@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
       { id: 2, name: "Minor" },
       { id: 3, name: "High" },
     ];
-
     constructor( private  router: Router, firstComponent:FirstComponent, heroService:HeroService) {
         this.routeLinks = [
             {
@@ -49,31 +48,45 @@ export class AppComponent implements OnInit {
                 index: 4
             }*/
         ];
+
+      
     }
 
-    onNavigate(location: string){ 
-      console.log("Inside AppComponent onNavigate-->"+location);
-      this.router.navigate(['/product1']);
+ 
+
+    reload:boolean;
+    onNavigate(value: string){ 
+      console.log("Inside AppComponent onNavigate-->"+value);
+      console.log("Inside AppComponent before Util.inputVal-->"+Util.inputVal);
+      console.log("Inside AppComponent before Util.oldVal-->"+Util.oldVal);
+      if(Util.inputVal == "ABC" &&  Util.oldVal == "ABC"){
+        console.log("IF 1111");
+        Util.inputVal=value;
+        //Util.oldVal=value;
+        this.router.navigate(['/product1']);
+      }else if(Util.inputVal != value){
+        console.log("IF 222");
+        Util.inputVal=value;
+        //this.router.navigated = false;
+        //this.router.navigateByUrl('/product2', { skipLocationChange: true });
+        this.router.navigate(['/product11']);
+      }
+      console.log("Inside AppComponent onNavigate After Util.inputVal-->"+Util.inputVal);
+      console.log("Inside AppComponent onNavigate After Util.oldVal-->"+Util.oldVal);
+      //this.reload = !this.reload;
+      //this.router.navigated = false;
+      
+      //this.ngOnInit();
     }
+
     inVal:string;
     ngOnInit(): void {
-      console.log("Inside AppComponent ngOnInit");
-     
-     /* this.heroService.currentMessage.subscribe(message => this.inVal = message)
-        this.router.events.subscribe((res) => {
+      console.log("Inside AppComponent ngOnInit");     
+    /*  this.router.events.subscribe((res) => {
             this.activeLinkIndex = this.routeLinks.indexOf(this.routeLinks.find(tab => tab.link === '.' + this.router.url));
             console.log("&&&&&&&&&->"+this.activeLinkIndex);
         });
-        */ 
-    }
-
-    newMessage(value:string) {
-      console.log("In newMessage-->"+value);
-      Util.inputVal=value;
-      console.log("In newMessage Util.inputVal-->"+Util.inputVal);
-      //this.firstComponent.ngOnInit();
-      //this.heroService.getData(value);
-      
+     */   
     }
     
     getData(value:string){
@@ -85,4 +98,13 @@ export class AppComponent implements OnInit {
       console.log("Inside callGetData"+this.info);
     }
 
+    /* 
+    newMessage(value:string) {
+      console.log("In newMessage-->"+value);
+      Util.inputVal=value;
+      console.log("In newMessage Util.inputVal-->"+Util.inputVal);
+      //this.firstComponent.ngOnInit();
+      //this.heroService.getData(value);
+      
+    }*/ 
 }

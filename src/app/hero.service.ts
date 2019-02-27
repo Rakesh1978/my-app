@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { Hero } from './hero';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { UserResponse } from './user-response';
+import { Car } from './car';
 import { BehaviorSubject } from 'rxjs';
 
 const httpOptions = {
@@ -24,8 +25,6 @@ export class HeroService {
   private handleError: HandleError;
   heroes: Hero[];
   restItemsUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/vocon-it.com/posts';
-  //restItemsUrl ='http://localhost:8080/restServiceApp/rest/testservice/Heroes';
-  //restItemsUrl ='/rest_jaxrs/rservice/heroservice/Heroes';
 
   constructor(private http: HttpClient,httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('HeroService');
@@ -47,7 +46,13 @@ export class HeroService {
 
   get_products(){
     return this.http.get(this.baseUrl + '/products');
-  }    
+  }  
+  
+  getCarDetails(val:string){
+    console.log("Inside HeroService getCarDetails Util.inputVal-->"+ val);
+    return this.http.get<Car[]>('https://api.myjson.com/bins/ly7d1');
+    //.subscribe(data=>{console.log(data)})
+  }
 /*
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();

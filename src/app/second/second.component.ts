@@ -1,16 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
+import { Car } from '../car';
+import { Observable } from 'rxjs';
+import { Util } from '../util';
 
 @Component({
   selector: 'app-second',
   templateUrl: './second.component.html',
-  styleUrls: ['./second.component.css']
+  styleUrls: ['./second.component.css'],
+  providers: [HeroService]
 })
 export class SecondComponent implements OnInit {
 
-  constructor() { }
+  private defaultColDef;
+  constructor(private heroService:HeroService) { 
+    console.log("Inside SecondComponent constructor");
+    this.defaultColDef = { sortable: true };
 
-  ngOnInit() {
-    console.log("Inside SecondComponent ngOnInit");
   }
+
+  private carList : Observable<Car[]> ; 
+  ngOnInit(){
+    console.log("Inside SecondComponent ngOnInit  Util.inputVal-->"+ Util.inputVal);
+     this.carList = this.heroService.getCarDetails(Util.inputVal);
+    
+  }
+
+  
+  columnDefs = [
+    {headerName: 'Make', field: 'make' },
+    {headerName: 'Model', field: 'model' },
+    {headerName: 'Price', field: 'price', unSortIcon: true}
+];
 
 }

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular/main';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     MatTabsModule,
     BrowserAnimationsModule,
-    FormsModule 
+    FormsModule ,
+    AgGridModule.withComponents([])
   ],
   providers: [HttpErrorHandler,
     MessageService],

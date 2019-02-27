@@ -8,20 +8,23 @@
 
 <!--
 <input #accountId>
-<button (click)="getData($event.target.value)"> Submit</button>-->
+<button (click)="getData($event.target.value)"> Submit</button>
 <a [routerLink]="['/product1']"> <button (click)="newMessage(accountId.value)"> Submit </button></a>
-
+-->
   <nav mat-tab-nav-bar >
       <a mat-tab-link 
          *ngFor="let routeLink of routeLinks; let i = index;"
          [routerLink]="routeLink.link"
-         routerLinkActive="mat-tab-link-active" #rla="routerLinkActive"        
+         routerLinkActive="mat-tab-link-active" #rla="routerLinkActive"  
+         [active]="activeLinkIndex === i"
+         (click)="activeLinkIndex = i"
+         [routerLinkActiveOptions]="{exact: true}"      
       >
           {{routeLink.label}}
       </a>
   </nav>
-
   <router-outlet></router-outlet>
+
 </div>
 
  <!--   [active]="activeLinkIndex === i"
