@@ -13,10 +13,30 @@ import {RoutingState } from '../routing-state';
 })
 export class SecondComponent implements OnInit {
 
+  private gridApi;
+  private gridColumnApi;
+
+  private columnDefs;
   private defaultColDef;
+  private rowData;
+  private statusBar;
+  private domLayout;
+
   constructor(private heroService:HeroService, public  routingState: RoutingState) { 
     console.log("Inside SecondComponent constructor");
-    this.defaultColDef = { sortable: true };
+    this.defaultColDef = {
+      enableRowGroup: true,
+      enablePivot: true,
+      enableValue: true,
+      sortable: true,
+      filter: true,
+      resizable: true
+    };
+    this.columnDefs = [
+      {headerName: 'Make', field: 'make' },
+      {headerName: 'Model', field: 'model' },
+      {headerName: 'Price', field: 'price', unSortIcon: true, filter:true}
+    ];
 
   }
 
@@ -27,15 +47,11 @@ export class SecondComponent implements OnInit {
     this.previousRoute = this.routingState.getPreviousUrl();
     Util.prevPath = this.previousRoute;
     console.log("this.previousRoute-->"+this.previousRoute);
-     this.carList = this.heroService.getCarDetails(Util.inputVal);
+     this.carList = this.heroService.getCarDetails(Util.inputVal)
+     //this.heroService.getCarDetails(Util.inputVal).subscribe(data=>{console.log(data)})
     
   }
 
   
-  columnDefs = [
-    {headerName: 'Make', field: 'make' },
-    {headerName: 'Model', field: 'model' },
-    {headerName: 'Price', field: 'price', unSortIcon: true}
-];
 
 }

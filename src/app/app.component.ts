@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
       { id: 2, name: "Minor" },
       { id: 3, name: "High" },
     ];
+    externalFilterChanged(below30:string){
+      console.log("externalFilterChanged"+below30);
+    }
     clickFun(){
       console.log("Inside clickFun *************888");
       console.log("Inside clickFun Before Util.prevPath-->"+Util.prevPath);
@@ -114,11 +117,11 @@ export class AppComponent implements OnInit {
                 label: 'Product 2',
                 link: './product2',
                 index: 1
-            }/*, {
+            } ,{
                 label: 'Product 3',
                 link: './product3',
                 index: 2
-            }, {
+            }/*, {
                 label: 'Product 4',
                 link: './product4',
                 index: 3

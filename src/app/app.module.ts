@@ -12,13 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular/main';
+import { ThirdComponent } from './third/third.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
-    SecondComponent 
+    SecondComponent,
+    ThirdComponent 
   ],
   imports: [
     AppRoutingModule,
