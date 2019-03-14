@@ -6,15 +6,14 @@
     </script>
     </head>
     <body>
-        <p>
-            second works!
-          </p>
-          <input type="radio" name="filter" value="below30" onchange="externalFilterChanged('below30')"/> Below 30
-        <!-- <input type="radio"  value="beef" (change)="externalFilterChanged('below30')"> Beef-->
+      
 
+      <input type="radio" name="filter" value="below30" onchange="externalFilterChanged('below30')"/> Below 30
+        <!-- <input type="radio"  value="beef" (change)="externalFilterChanged('below30')"> Beef-->
         <ag-grid-angular 
           #agGrid
           class="ag-theme-balham"
+          style="width: 500px; height: 200px;" 
           [defaultColDef]="defaultColDef"
           [rowData]="carList | async"
           [columnDefs]="columnDefs"

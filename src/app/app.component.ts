@@ -4,16 +4,25 @@ import {HeroService } from './hero.service';
 import { Util } from './util';
 import {FirstComponent} from './first/first.component';
 import {RoutingState } from './routing-state';
+import {ThirdComponent} from './third/third.component';
+import { ButtonRendererComponent } from './render/button-renderer-component';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [HeroService, FirstComponent]
+    providers: [HeroService, FirstComponent,ThirdComponent]
 
 })
 
 export class AppComponent implements OnInit {
+
+
+/** Simple method to toggle element visibility */
+public toggle(): void { 
+  console.log("Inside toggle");
+  this.isViewable = !this.isViewable; 
+}
 
     info: string = "";
     routeLinks: any[];
@@ -25,18 +34,24 @@ export class AppComponent implements OnInit {
       { id: 2, name: "Minor" },
       { id: 3, name: "High" },
     ];
-    externalFilterChanged(below30:string){
-      console.log("externalFilterChanged"+below30);
+    private gridApi;
+    above7K() {
+      this.thirdComponent.applyFilter();
     }
+  
+    clearFilter() {
+      this.thirdComponent.clearFilter();
+    }
+  
     clickFun(){
       console.log("Inside clickFun *************888");
       console.log("Inside clickFun Before Util.prevPath-->"+Util.prevPath);
        console.log("Inside clickFun Before Util.currPath-->"+Util.currPath);
       if(Util.inputVal != Util.oldVal || Util.oldVal == "ABC"){
-        console.log("Inside AppComponent if loop");
+        console.log("Inside clickFun if loop");
         Util.oldVal = Util.inputVal;
       }else{
-        console.log("Inside AppComponent ELSE loop");
+        console.log("Inside clickFun ELSE loop");
         //this.router.navigate(['/product1']);
       }
       console.log("Inside clickFun after Util.prevPath-->"+Util.prevPath);
@@ -44,10 +59,10 @@ export class AppComponent implements OnInit {
     }
     reload:boolean;
     onNavigate(value: string){ 
-
-      console.log("Inside AppComponent onNavigate-->"+value);
-      console.log("Inside AppComponent before Util.inputVal-->"+Util.inputVal);
-      console.log("Inside AppComponent before Util.oldVal-->"+Util.oldVal);
+      console.log("Inside onNavigate &&&&&&&&&&&&&&7");
+      console.log("Inside onNavigate onNavigate-->"+value);
+      console.log("Inside onNavigate before Util.inputVal-->"+Util.inputVal);
+      console.log("Inside onNavigate before Util.oldVal-->"+Util.oldVal);
       if(Util.inputVal == "ABC" &&  Util.oldVal == "ABC"){
         console.log("IF 1111");
         Util.inputVal=value;
@@ -84,6 +99,7 @@ export class AppComponent implements OnInit {
             console.log("&&&&&&&&&->"+this.activeLinkIndex);
         });
      */   
+    //this.isViewable = true; 
     }
     
     getData(value:string){
@@ -105,7 +121,8 @@ export class AppComponent implements OnInit {
       
     }*/ 
     constructor( private  router: Router, public firstComponent:FirstComponent, public heroService:HeroService, 
-      public routingState: RoutingState) {
+      public routingState: RoutingState, public thirdComponent:ThirdComponent) {
+        console.log("Inside AppComponent constructor");  
         routingState.loadRouting();
 
         this.routeLinks = [
@@ -131,9 +148,63 @@ export class AppComponent implements OnInit {
                 index: 4
             }*/
         ];
-        
 
-      
+        this.frameworkComponents = {
+          buttonRenderer: ButtonRendererComponent,
+        }
     }
 
+
+    frameworkComponents: any;
+    rowDataClicked1 = {};
+    rowDataClicked2 = {};
+
+    columnDefs = [
+      {
+        headerName: 'Button Col 1',
+        cellRenderer: 'buttonRenderer',
+        cellRendererParams: {
+          onClick: this.onBtnClick1.bind(this),
+          label: 'Click 1'
+        }
+      },
+      { headerName: 'Model', field: 'model' },
+      { headerName: 'Price', field: 'price' }
+    ];
+
+    defaultColDef = {
+      enableRowGroup: true,
+      enablePivot: true,
+      enableValue: true,
+      sortable: true,
+      filter: true,
+      resizable: true
+    };
+  
+    rowData = [
+      { make: 'Toyota', model: 'Celica', price: 35000 },
+      { make: 'Ford', model: 'Mondeo', price: 32000 },
+      { make: 'Porsche', model: 'Boxter', price: 72000 }
+    ];
+  // Class variables
+    public isViewable: boolean;
+    public isGridViewable: boolean=true;
+    onBtnClick1(e) {
+      console.log("**********INSIDE onBtnClick1******"+e.rowData.price );
+      // Class variables
+     this.isViewable=true;
+     this.isGridViewable=false;
+      this.rowDataClicked1 = e.rowData;
+      Util.model=e.rowData.model;
+    }
+    
+    onBtnClick2(e) { 
+      console.log("##########INSIDE onBtnClick2#########"+ e.rowData.model);
+      this.rowDataClicked2 = e.rowData;
+    }
+    onClick(){
+      console.log("##########INSIDE onClick #########" );
+      this.isGridViewable=true;
+      this.isViewable=false;
+    }
 }

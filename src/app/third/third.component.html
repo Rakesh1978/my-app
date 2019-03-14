@@ -1,11 +1,9 @@
 <div>
-
     <span class="button-group">
       <button (click)="above7K()">Above 7K</button> 
       <button (click)="clearFilter()">All</button>
     </span>
-    <br />
-  
+    <br />  
   </div>
   <ag-grid-angular
     #agGrid
@@ -16,4 +14,15 @@
     [defaultColDef]="defaultColDef"
     [rowData]="rowData"
     (gridReady)="onGridReady($event)"
+    (modelUpdated)="onModelUpdated()"
+  
+
+    
   ></ag-grid-angular>
+
+  <!--
+  (modelUpdated)="onModelUpdated()"
+      (onColumnMoved)= "onColumnMoved()"
+
+(cellDoubleClicked)="onCellDoubleClicked($event)">
+  -->

@@ -13,6 +13,8 @@ import { MatTabsModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular/main';
 import { ThirdComponent } from './third/third.component';
+import { BulkReviewComponent } from './bulk-review/bulk-review.component';
+import { ButtonRendererComponent } from './render/button-renderer-component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ThirdComponent } from './third/third.component';
     AppComponent,
     FirstComponent,
     SecondComponent,
-    ThirdComponent 
+    ThirdComponent,
+    BulkReviewComponent,
+    ButtonRendererComponent
   ],
   imports: [
     AppRoutingModule,
@@ -29,7 +33,7 @@ import { ThirdComponent } from './third/third.component';
     MatTabsModule,
     BrowserAnimationsModule,
     FormsModule ,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([ButtonRendererComponent])
   ],
   providers: [HttpErrorHandler,
     MessageService],

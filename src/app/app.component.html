@@ -1,3 +1,33 @@
+<!--<button (click)="toggle()">Show / Hide</button>
+
+<app-second *ngIf="isViewable"></app-second>
+<app-third *ngIf="!isViewable"></app-third>
+-->
+<div *ngIf="!isGridViewable">
+  <button type="button" (click)="onClick()">BULK</button>
+</div>
+<div style="margin-left:100px" *ngIf="isGridViewable">
+  <ag-grid-angular 
+  style="width: 500px; height: 200px;" 
+  class="ag-theme-balham"
+  [rowData]="rowData" 
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [frameworkComponents]="frameworkComponents"
+  >
+</ag-grid-angular>
+</div>
+
+<div style="margin-left:100px" *ngIf="isViewable">
+  <app-second ></app-second>
+</div>
+
+
+<!--
+  <h4>Row data from button 1: </h4>
+<pre>{{rowDataClicked1 | json}}</pre>
+<h4>Row data from button 2: </h4>
+<pre>{{rowDataClicked2 | json}}</pre>
 <div style="padding: 5px;">
   <h1>Angular Material 2 Tab Example using md-tab-nav-bar and md-tab-link.</h1>
  
@@ -5,13 +35,24 @@
     <option>--Select Option--</option> 
     <option *ngFor="let list of listOptions" value={{list.id}}>{{list.name}}</option>
   </select>
-
+-->
 <!--
 <input #accountId>
 <button (click)="getData($event.target.value)"> Submit</button>
 <a [routerLink]="['/product1']"> <button (click)="newMessage(accountId.value)"> Submit </button></a>
 -->
+<!--
+<div>
+
+    <span class="button-group">
+      <button (click)="above7K()">Above 7K</button> 
+      <button (click)="clearFilter()">All</button>
+    </span>
+    <br />
+  
+  </div>
   <nav mat-tab-nav-bar >
+    
       <a mat-tab-link 
          *ngFor="let routeLink of routeLinks; let i = index;"
          [routerLink]="routeLink.link"
@@ -21,12 +62,13 @@
          [routerLinkActiveOptions]="{exact: true}"      
       >
           {{routeLink.label}}
+          
       </a>
   </nav>
   <router-outlet></router-outlet>
 
 </div>
-
+-->
  <!--   [active]="activeLinkIndex === i"
          (click)="activeLinkIndex = i"
          [routerLinkActiveOptions]="{exact: true}"

@@ -47,9 +47,10 @@ export class SecondComponent implements OnInit {
     this.previousRoute = this.routingState.getPreviousUrl();
     Util.prevPath = this.previousRoute;
     console.log("this.previousRoute-->"+this.previousRoute);
-     this.carList = this.heroService.getCarDetails(Util.inputVal)
+     this.carList = this.heroService.getCarDetails(Util.inputVal);
+     Util.counter++;
      //this.heroService.getCarDetails(Util.inputVal).subscribe(data=>{console.log(data)})
-    
+    console.log("#######******"+Util.model+"<<<<<<<<<<<<<");
   }
 
   
