@@ -152,40 +152,43 @@ public toggle(): void {
         this.frameworkComponents = {
           buttonRenderer: ButtonRendererComponent,
         }
+        this.columnDefs = [
+          {
+            headerName: 'Button Col 1',
+            cellRenderer: 'buttonRenderer',
+            cellRendererParams: {
+              onClick: this.onBtnClick1.bind(this),
+              label: 'Click 1'
+            }
+          },
+          { headerName: 'Model', field: 'model' },
+          { headerName: 'Price', field: 'price' }
+        ];
+    
+        this.defaultColDef = {
+          enableRowGroup: true,
+          enablePivot: true,
+          enableValue: true,
+          sortable: true,
+          filter: true,
+          resizable: true
+        };
+      
+        this.rowData = [
+          { make: 'Toyota', model: 'Celica', price: 35000 },
+          { make: 'Ford', model: 'Mondeo', price: 32000 },
+          { make: 'Porsche', model: 'Boxter', price: 72000 }
+        ];
     }
-
+    columnDefs;
+    rowData:any;
+    defaultColDef;
 
     frameworkComponents: any;
     rowDataClicked1 = {};
     rowDataClicked2 = {};
 
-    columnDefs = [
-      {
-        headerName: 'Button Col 1',
-        cellRenderer: 'buttonRenderer',
-        cellRendererParams: {
-          onClick: this.onBtnClick1.bind(this),
-          label: 'Click 1'
-        }
-      },
-      { headerName: 'Model', field: 'model' },
-      { headerName: 'Price', field: 'price' }
-    ];
-
-    defaultColDef = {
-      enableRowGroup: true,
-      enablePivot: true,
-      enableValue: true,
-      sortable: true,
-      filter: true,
-      resizable: true
-    };
-  
-    rowData = [
-      { make: 'Toyota', model: 'Celica', price: 35000 },
-      { make: 'Ford', model: 'Mondeo', price: 32000 },
-      { make: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
+    
   // Class variables
     public isViewable: boolean;
     public isGridViewable: boolean=true;

@@ -2,7 +2,7 @@
 
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
+//import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-button-renderer',

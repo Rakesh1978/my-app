@@ -5,8 +5,14 @@
 -->
 <div *ngIf="!isGridViewable">
   <button type="button" (click)="onClick()">BULK</button>
+   
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="month" [startAt]="month"></mat-datepicker>
+  </mat-form-field>  
 </div>
-<div style="margin-left:100px" *ngIf="isGridViewable">
+<div style="margin-left:100px" *ngIf="isGridViewable"> 
   <ag-grid-angular 
   style="width: 500px; height: 200px;" 
   class="ag-theme-balham"
@@ -17,7 +23,7 @@
   >
 </ag-grid-angular>
 </div>
-
+ 
 <div style="margin-left:100px" *ngIf="isViewable">
   <app-second ></app-second>
 </div>

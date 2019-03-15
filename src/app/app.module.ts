@@ -15,7 +15,9 @@ import { AgGridModule } from 'ag-grid-angular/main';
 import { ThirdComponent } from './third/third.component';
 import { BulkReviewComponent } from './bulk-review/bulk-review.component';
 import { ButtonRendererComponent } from './render/button-renderer-component';
-
+import { TesterComponent } from './test/tester.component';
+//import { DatePickerModule } from 'ng2-datepicker-bootstrap';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { ButtonRendererComponent } from './render/button-renderer-component';
     SecondComponent,
     ThirdComponent,
     BulkReviewComponent,
-    ButtonRendererComponent
+    ButtonRendererComponent,
+    TesterComponent,
+    
+    
   ],
   imports: [
     AppRoutingModule,
@@ -33,7 +38,8 @@ import { ButtonRendererComponent } from './render/button-renderer-component';
     MatTabsModule,
     BrowserAnimationsModule,
     FormsModule ,
-    AgGridModule.withComponents([ButtonRendererComponent])
+    AgGridModule.withComponents([ButtonRendererComponent]),
+    MaterialModule
   ],
   providers: [HttpErrorHandler,
     MessageService],
